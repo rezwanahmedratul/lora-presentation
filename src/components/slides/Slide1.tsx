@@ -55,7 +55,7 @@ export const Slide1: React.FC<Slide1Props> = ({ onNextSlide }) => {
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-serif text-[#0F172A] leading-tight tracking-tight mt-1">
           <em className="italic text-[#0071E3] font-normal mr-2">
             {SLIDE_1_DATA.headlineItalic}
-          </em>
+          </em>{" "}
           {SLIDE_1_DATA.headlineRest}
         </h1>
         <p className="text-sm sm:text-base text-[#64748B] font-sans mt-2 max-w-2xl leading-relaxed">
