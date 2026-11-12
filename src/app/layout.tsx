@@ -37,7 +37,7 @@ export default function RootLayout({
       lang="en"
       className={`${instrumentSerif.variable} ${interTight.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-[#FAF8F5] text-[#161412] font-sans overflow-hidden select-none">
+      <body className="min-h-full bg-[#F4F8FB] text-[#0F172A] font-sans overflow-hidden select-none">
         {children}
       </body>
     </html>
