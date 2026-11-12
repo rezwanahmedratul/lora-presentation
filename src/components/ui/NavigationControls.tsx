@@ -11,7 +11,6 @@ import {
   VolumeX,
 } from "lucide-react";
 import { toggleAudio, isAudioEnabled, playSlideTransitionSound } from "@/utils/audio";
-import { PRESENTATION_METADATA } from "@/data/presentationData";
 
 interface NavigationControlsProps {
   currentSlide: number;
@@ -60,8 +59,6 @@ export const NavigationControls: React.FC<NavigationControlsProps> = ({
   };
 
   const progressPercent = ((currentSlide + 1) / totalSlides) * 100;
-  const slideIndexStr = String(currentSlide + 1).padStart(2, "0");
-  const totalSlidesStr = String(totalSlides).padStart(2, "0");
 
   return (
     <>
@@ -75,98 +72,72 @@ export const NavigationControls: React.FC<NavigationControlsProps> = ({
         />
       </div>
 
-      {/* 2. Top Header Navigation */}
-      <header className="fixed top-3 left-0 right-0 z-40 px-6 sm:px-10 flex items-center justify-between pointer-events-none">
-        <div className="pointer-events-auto flex items-center gap-3">
-          <span className="font-mono text-[11px] font-semibold tracking-wider uppercase text-[#0071E3] bg-[#E0F2FE]/80 px-3 py-1 rounded-full border border-[#0071E3]/20">
-            {PRESENTATION_METADATA.courseTitle}
-          </span>
-          <span className="hidden md:inline-block text-xs text-[#64748B] font-mono">
-            {currentSlide === 0 ? "The Scenario" : "LoRa Wireless Module"}
-          </span>
-        </div>
+      {/* 2. Top-Right Utilities Only (Audio Mute + Fullscreen Toggle) */}
+      <header className="fixed top-4 right-6 sm:right-10 z-40 flex items-center gap-2 pointer-events-auto">
+        <button
+          onClick={handleAudioToggle}
+          title={audioActive ? "Mute audio" : "Enable audio"}
+          className="p-2 rounded-full text-[#64748B] hover:text-[#0071E3] hover:bg-[#E0F2FE]/60 bg-white/70 backdrop-blur-md border border-[#E2EBF5] transition-colors interactive-hover shadow-xs"
+          aria-label="Toggle sound"
+        >
+          {audioActive ? <Volume2 size={16} /> : <VolumeX size={16} />}
+        </button>
 
-        <div className="pointer-events-auto flex items-center gap-2">
-          <button
-            onClick={handleAudioToggle}
-            title={audioActive ? "Mute audio (M)" : "Enable audio (M)"}
-            className="p-2 rounded-full text-[#64748B] hover:text-[#0071E3] hover:bg-[#E0F2FE]/60 transition-colors interactive-hover"
-            aria-label="Toggle sound"
-          >
-            {audioActive ? <Volume2 size={16} /> : <VolumeX size={16} />}
-          </button>
-
-          <button
-            onClick={handleToggleFullscreen}
-            title="Toggle fullscreen (F)"
-            className="p-2 rounded-full text-[#64748B] hover:text-[#0071E3] hover:bg-[#E0F2FE]/60 transition-colors interactive-hover"
-            aria-label="Toggle fullscreen"
-          >
-            {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
-          </button>
-        </div>
+        <button
+          onClick={handleToggleFullscreen}
+          title="Toggle fullscreen"
+          className="p-2 rounded-full text-[#64748B] hover:text-[#0071E3] hover:bg-[#E0F2FE]/60 bg-white/70 backdrop-blur-md border border-[#E2EBF5] transition-colors interactive-hover shadow-xs"
+          aria-label="Toggle fullscreen"
+        >
+          {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
+        </button>
       </header>
 
-      {/* 3. Bottom Keynote Bar */}
-      <footer className="fixed bottom-4 left-0 right-0 z-40 px-6 sm:px-10 flex items-center justify-between pointer-events-none">
-        <div className="hidden lg:flex items-center gap-2 pointer-events-auto text-[11px] text-[#64748B] font-mono">
-          <span className="px-1.5 py-0.5 rounded border border-[#E2EBF2] bg-white/80">←</span>
-          <span className="px-1.5 py-0.5 rounded border border-[#E2EBF2] bg-white/80">→</span>
-          <span className="px-1.5 py-0.5 rounded border border-[#E2EBF2] bg-white/80">Space</span>
-          <span>navigate</span>
-          <span className="mx-1">•</span>
-          <span className="px-1.5 py-0.5 rounded border border-[#E2EBF2] bg-white/80">F</span>
-          <span>fullscreen</span>
-        </div>
-
-        <div className="pointer-events-auto flex items-center gap-1.5 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#E2EBF2] shadow-xs">
-          {Array.from({ length: totalSlides }).map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => onGoToSlide(idx)}
-              className={`h-2 rounded-full transition-all interactive-hover ${
-                idx === currentSlide
-                  ? "w-6 bg-[#0071E3]"
-                  : "w-2 bg-[#CBD5E1] hover:bg-[#0071E3]/40"
-              }`}
-              aria-label={`Jump to slide ${idx + 1}`}
-            />
-          ))}
-        </div>
-
-        <div className="pointer-events-auto flex items-center gap-3 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#E2EBF2] shadow-xs">
-          <div className="font-mono text-xs font-semibold tracking-wider text-[#0F172A] px-1">
-            <span className="text-[#0071E3]">{slideIndexStr}</span>
-            <span className="text-[#94A3B8] mx-1">/</span>
-            <span className="text-[#64748B]">{totalSlidesStr}</span>
-          </div>
-
-          <div className="h-4 w-[1px] bg-[#E2EBF2]" />
-
+      {/* 3. Centered Floating Pill Dock (Arrows + Dots Only) */}
+      <footer className="fixed bottom-5 left-0 right-0 z-40 flex items-center justify-center pointer-events-none px-6">
+        <div className="pointer-events-auto flex items-center gap-2 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-[#E2EBF5] shadow-xs">
+          {/* Previous Arrow */}
           <button
             onClick={onPrev}
             disabled={currentSlide === 0}
-            className={`p-1 rounded-full transition-all interactive-hover ${
+            className={`p-1.5 rounded-full transition-all interactive-hover ${
               currentSlide === 0
                 ? "text-[#CBD5E1] cursor-not-allowed opacity-40"
                 : "text-[#0F172A] hover:text-[#0071E3] hover:bg-[#E0F2FE]"
             }`}
             aria-label="Previous slide"
           >
-            <ChevronLeft size={18} />
+            <ChevronLeft size={16} />
           </button>
 
+          {/* Dots Indicator */}
+          <div className="flex items-center gap-1.5 px-2">
+            {Array.from({ length: totalSlides }).map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => onGoToSlide(idx)}
+                className={`h-2 rounded-full transition-all interactive-hover ${
+                  idx === currentSlide
+                    ? "w-6 bg-[#0071E3]"
+                    : "w-2 bg-[#CBD5E1] hover:bg-[#0071E3]/40"
+                }`}
+                aria-label={`Jump to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Next Arrow */}
           <button
             onClick={onNext}
             disabled={currentSlide === totalSlides - 1}
-            className={`p-1 rounded-full transition-all interactive-hover ${
+            className={`p-1.5 rounded-full transition-all interactive-hover ${
               currentSlide === totalSlides - 1
                 ? "text-[#CBD5E1] cursor-not-allowed opacity-40"
                 : "text-[#0F172A] hover:text-[#0071E3] hover:bg-[#E0F2FE]"
             }`}
             aria-label="Next slide"
           >
-            <ChevronRight size={18} />
+            <ChevronRight size={16} />
           </button>
         </div>
       </footer>
