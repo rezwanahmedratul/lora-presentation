@@ -138,7 +138,7 @@ export default function PresentationApp() {
 
   return (
     <main
-      className="relative w-screen h-screen overflow-hidden bg-[#FAF8F5] select-none"
+      className="relative w-screen h-screen overflow-hidden bg-[#F4F8FB] select-none"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
