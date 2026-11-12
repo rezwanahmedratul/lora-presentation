@@ -12,12 +12,10 @@ export const CustomCursor: React.FC = () => {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
-  // High-frequency responsive spring
   const springX = useSpring(cursorX, { damping: 28, stiffness: 350 });
   const springY = useSpring(cursorY, { damping: 28, stiffness: 350 });
 
   useEffect(() => {
-    // Check touch support
     if (window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window) {
       setIsTouchDevice(true);
       return;
@@ -30,7 +28,6 @@ export const CustomCursor: React.FC = () => {
       cursorY.set(e.clientY);
       if (!isVisible) setIsVisible(true);
 
-      // Check if hovering over clickable or interactive element
       const target = e.target as HTMLElement | null;
       if (target) {
         const interactive = target.closest(
@@ -65,10 +62,10 @@ export const CustomCursor: React.FC = () => {
 
   return (
     <>
-      {/* Precision Core Dot */}
+      {/* Precision Core Dot (Blue) */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none fixed top-0 left-0 z-50 rounded-full bg-[#FF5A1F] mix-blend-multiply"
+        className="pointer-events-none fixed top-0 left-0 z-50 rounded-full bg-[#0071E3]"
         style={{
           x: cursorX,
           y: cursorY,
@@ -76,7 +73,7 @@ export const CustomCursor: React.FC = () => {
           translateY: "-50%",
           width: isClicking ? 6 : isHovering ? 8 : 6,
           height: isClicking ? 6 : isHovering ? 8 : 6,
-          opacity: 0.9,
+          opacity: 0.95,
         }}
         transition={{ duration: 0.1 }}
       />
@@ -84,14 +81,14 @@ export const CustomCursor: React.FC = () => {
       {/* Trailing Soft Halo */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none fixed top-0 left-0 z-40 rounded-full border border-[#FF5A1F]/40 bg-[#FF5A1F]/10 backdrop-blur-[1px]"
+        className="pointer-events-none fixed top-0 left-0 z-40 rounded-full border border-[#0071E3]/40 bg-[#0071E3]/10 backdrop-blur-[1px]"
         style={{
           x: springX,
           y: springY,
           translateX: "-50%",
           translateY: "-50%",
-          width: isClicking ? 28 : isHovering ? 48 : 22,
-          height: isClicking ? 28 : isHovering ? 48 : 22,
+          width: isClicking ? 26 : isHovering ? 44 : 20,
+          height: isClicking ? 26 : isHovering ? 44 : 20,
           scale: isClicking ? 0.9 : isHovering ? 1.15 : 1,
         }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
