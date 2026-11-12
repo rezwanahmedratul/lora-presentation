@@ -17,7 +17,7 @@ interface NavigationControlsProps {
   totalSlides: number;
   onPrev: () => void;
   onNext: () => void;
-  onGoToSlide: (index: number) => void;
+  onGoToSlide?: (index: number) => void;
 }
 
 export const NavigationControls: React.FC<NavigationControlsProps> = ({
@@ -72,8 +72,38 @@ export const NavigationControls: React.FC<NavigationControlsProps> = ({
         />
       </div>
 
-      {/* 2. Top-Right Utilities Only (Audio Mute + Fullscreen Toggle) */}
+      {/* 2. Top-Right Controls (Prev/Next Navigation + Audio + Fullscreen) */}
       <header className="fixed top-4 right-6 sm:right-10 z-40 flex items-center gap-2 pointer-events-auto">
+        <button
+          onClick={onPrev}
+          disabled={currentSlide === 0}
+          title="Previous slide"
+          className={`p-2 rounded-full bg-white/70 backdrop-blur-md border border-[#E2EBF5] transition-colors interactive-hover shadow-xs ${
+            currentSlide === 0
+              ? "text-[#CBD5E1] cursor-not-allowed opacity-40"
+              : "text-[#64748B] hover:text-[#0071E3] hover:bg-[#E0F2FE]/60"
+          }`}
+          aria-label="Previous slide"
+        >
+          <ChevronLeft size={16} />
+        </button>
+
+        <button
+          onClick={onNext}
+          disabled={currentSlide === totalSlides - 1}
+          title="Next slide"
+          className={`p-2 rounded-full bg-white/70 backdrop-blur-md border border-[#E2EBF5] transition-colors interactive-hover shadow-xs ${
+            currentSlide === totalSlides - 1
+              ? "text-[#CBD5E1] cursor-not-allowed opacity-40"
+              : "text-[#64748B] hover:text-[#0071E3] hover:bg-[#E0F2FE]/60"
+          }`}
+          aria-label="Next slide"
+        >
+          <ChevronRight size={16} />
+        </button>
+
+        <div className="h-4 w-[1px] bg-[#E2EBF5] mx-0.5" />
+
         <button
           onClick={handleAudioToggle}
           title={audioActive ? "Mute audio" : "Enable audio"}
@@ -92,55 +122,6 @@ export const NavigationControls: React.FC<NavigationControlsProps> = ({
           {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
         </button>
       </header>
-
-      {/* 3. Centered Floating Pill Dock (Arrows + Dots Only) */}
-      <footer className="fixed bottom-5 left-0 right-0 z-40 flex items-center justify-center pointer-events-none px-6">
-        <div className="pointer-events-auto flex items-center gap-2 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-[#E2EBF5] shadow-xs">
-          {/* Previous Arrow */}
-          <button
-            onClick={onPrev}
-            disabled={currentSlide === 0}
-            className={`p-1.5 rounded-full transition-all interactive-hover ${
-              currentSlide === 0
-                ? "text-[#CBD5E1] cursor-not-allowed opacity-40"
-                : "text-[#0F172A] hover:text-[#0071E3] hover:bg-[#E0F2FE]"
-            }`}
-            aria-label="Previous slide"
-          >
-            <ChevronLeft size={16} />
-          </button>
-
-          {/* Dots Indicator */}
-          <div className="flex items-center gap-1.5 px-2">
-            {Array.from({ length: totalSlides }).map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => onGoToSlide(idx)}
-                className={`h-2 rounded-full transition-all interactive-hover ${
-                  idx === currentSlide
-                    ? "w-6 bg-[#0071E3]"
-                    : "w-2 bg-[#CBD5E1] hover:bg-[#0071E3]/40"
-                }`}
-                aria-label={`Jump to slide ${idx + 1}`}
-              />
-            ))}
-          </div>
-
-          {/* Next Arrow */}
-          <button
-            onClick={onNext}
-            disabled={currentSlide === totalSlides - 1}
-            className={`p-1.5 rounded-full transition-all interactive-hover ${
-              currentSlide === totalSlides - 1
-                ? "text-[#CBD5E1] cursor-not-allowed opacity-40"
-                : "text-[#0F172A] hover:text-[#0071E3] hover:bg-[#E0F2FE]"
-            }`}
-            aria-label="Next slide"
-          >
-            <ChevronRight size={16} />
-          </button>
-        </div>
-      </footer>
     </>
   );
 };

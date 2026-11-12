@@ -72,7 +72,7 @@ export const Slide7: React.FC<Slide7Props> = ({ onRestartPresentation }) => {
   };
 
   return (
-    <div className="relative w-full h-full flex flex-col justify-between pt-14 pb-20 px-8 sm:px-14 lg:px-20 xl:px-24 overflow-y-auto">
+    <div className="relative w-full h-full flex flex-col justify-between pt-12 pb-10 px-8 sm:px-14 lg:px-20 xl:px-24 overflow-y-auto">
       {/* 1. Full-Width Headline */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
@@ -81,7 +81,7 @@ export const Slide7: React.FC<Slide7Props> = ({ onRestartPresentation }) => {
         className="w-full"
       >
         <span className="font-mono text-xs uppercase tracking-widest text-[#0071E3] font-semibold">
-          Slide {SLIDE_7_DATA.slideNumber} • {SLIDE_7_DATA.title}
+          {SLIDE_7_DATA.title}
         </span>
         <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-serif text-[#0F172A] leading-[1.02] tracking-tight mt-1">
           <em className="italic text-[#0071E3] font-normal mr-3">Demonstration, Quiz</em>
@@ -291,18 +291,6 @@ export const Slide7: React.FC<Slide7Props> = ({ onRestartPresentation }) => {
         </div>
       </div>
 
-      {/* 3. Footer */}
-      <div className="w-full flex items-center justify-between border-t border-[#E2EBF5] pt-4">
-        <p className="font-mono text-xs sm:text-sm text-[#64748B]">
-          Thank you for listening. LoRa Wireless Module Presentation.
-        </p>
-        <button
-          onClick={onRestartPresentation}
-          className="text-xs sm:text-sm font-mono text-[#0071E3] hover:underline interactive-hover font-semibold"
-        >
-          Restart (Slide 01)
-        </button>
-      </div>
     </div>
   );
 };

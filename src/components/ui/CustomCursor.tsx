@@ -29,11 +29,13 @@ export const CustomCursor: React.FC = () => {
       if (!isVisible) setIsVisible(true);
 
       const target = e.target as HTMLElement | null;
-      if (target) {
+      if (target && typeof target.closest === "function") {
         const interactive = target.closest(
           'button, a, input, select, textarea, [role="button"], .cursor-pointer, .interactive-hover'
         );
         setIsHovering(!!interactive);
+      } else {
+        setIsHovering(false);
       }
     };
 

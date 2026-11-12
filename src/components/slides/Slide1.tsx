@@ -23,7 +23,7 @@ export const Slide1: React.FC<Slide1Props> = ({ onNextSlide }) => {
   };
 
   return (
-    <div className="relative w-full h-full flex flex-col justify-between pt-12 pb-16 px-8 sm:px-14 lg:px-20 xl:px-24 overflow-y-auto">
+    <div className="relative w-full h-full flex flex-col justify-between pt-12 pb-10 px-8 sm:px-14 lg:px-20 xl:px-24 overflow-y-auto">
       {/* 1. Full-Width Headline */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}

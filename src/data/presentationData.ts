@@ -2,7 +2,6 @@
 // All copy, questions, hardware specs, and quiz data are centralized here.
 
 export const PRESENTATION_METADATA = {
-  courseTitle: "Microprocessor, Microcontroller & Embedded Systems",
   topic: "LoRa Wireless Module",
   totalSlides: 7,
 };

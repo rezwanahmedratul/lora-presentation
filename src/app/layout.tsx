@@ -23,8 +23,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LoRa Wireless Module | Embedded Systems Presentation",
-  description: "An Apple Keynote style interactive presentation for Microprocessor, Microcontroller and Embedded Systems.",
+  title: "LoRa Wireless Module Presentation",
+  description: "An Apple Keynote style interactive presentation on LoRa wireless technology.",
 };
 
 export default function RootLayout({

@@ -43,7 +43,7 @@ export const Slide5: React.FC<Slide5Props> = ({ onNextSlide }) => {
   };
 
   return (
-    <div className="relative w-full h-full flex flex-col justify-between pt-14 pb-20 px-8 sm:px-14 lg:px-20 xl:px-24 overflow-y-auto">
+    <div className="relative w-full h-full flex flex-col justify-between pt-12 pb-10 px-8 sm:px-14 lg:px-20 xl:px-24 overflow-y-auto">
       {/* 1. Full-Width Headline */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
@@ -52,7 +52,7 @@ export const Slide5: React.FC<Slide5Props> = ({ onNextSlide }) => {
         className="w-full"
       >
         <span className="font-mono text-xs uppercase tracking-widest text-[#0071E3] font-semibold">
-          Slide {SLIDE_5_DATA.slideNumber} • {SLIDE_5_DATA.title}
+          {SLIDE_5_DATA.title}
         </span>
         <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-serif text-[#0F172A] leading-[1.02] tracking-tight mt-1">
           <em className="italic text-[#0071E3] font-normal mr-3">How Two Devices</em>
@@ -168,21 +168,18 @@ export const Slide5: React.FC<Slide5Props> = ({ onNextSlide }) => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* 3. Footer */}
-      <div className="w-full flex items-center justify-between border-t border-[#E2EBF5] pt-4">
-        <p className="font-mono text-xs sm:text-sm text-[#64748B]">
-          Complete wireless journey: SPI bus → RF Chirp over air → SPI read on receiver.
-        </p>
-        <button
-          onClick={onNextSlide}
-          className="flex items-center gap-2 text-xs sm:text-sm font-mono font-semibold text-[#0071E3] hover:text-[#0369A1] transition-colors interactive-hover"
-        >
-          <span>Slide 6: Applications & Limitations</span>
-          <ArrowRight size={16} />
-        </button>
+          {/* Next slide button */}
+          <div className="mt-5 pt-3 border-t border-[#E2EBF5] flex justify-end">
+            <button
+              onClick={onNextSlide}
+              className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#0071E3] text-white font-sans text-xs sm:text-sm font-semibold hover:bg-[#0369A1] transition-all interactive-hover shadow-xs"
+            >
+              <span>Next: Applications & Limitations</span>
+              <ArrowRight size={16} />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
