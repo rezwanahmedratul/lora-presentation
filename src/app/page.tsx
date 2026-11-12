@@ -121,7 +121,7 @@ export default function PresentationApp() {
       filter: "blur(0px)",
       transition: {
         duration: 0.55,
-        ease: [0.16, 1, 0.3, 1],
+        ease: [0.16, 1, 0.3, 1] as const,
       },
     },
     exit: (dir: number) => ({
@@ -131,7 +131,7 @@ export default function PresentationApp() {
       filter: "blur(6px)",
       transition: {
         duration: 0.4,
-        ease: [0.16, 1, 0.3, 1],
+        ease: [0.16, 1, 0.3, 1] as const,
       },
     }),
   };
