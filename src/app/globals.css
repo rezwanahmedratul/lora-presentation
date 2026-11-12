@@ -1,44 +1,28 @@
 @import "tailwindcss";
 
-@theme {
-  --color-warm-bg: #F5F9FC;
-  --color-warm-card: #FFFFFF;
-  --color-warm-border: #E2EBF2;
-  --color-warm-border-subtle: #EDF4F9;
-  --color-warm-text: #0F172A;
-  --color-warm-muted: #64748B;
-  --color-warm-subtle: #94A3B8;
-
-  --color-lora-blue: #0071E3;
-  --color-lora-tint: #E0F2FE;
-  --color-lora-deep: #0369A1;
-  --color-lora-glow: rgba(0, 113, 227, 0.12);
-
-  --font-serif: var(--font-serif), "Instrument Serif", serif;
-  --font-sans: var(--font-sans), "Inter Tight", sans-serif;
-  --font-mono: var(--font-mono), "JetBrains Mono", monospace;
-}
-
 :root {
-  --bg-color: #F5F9FC;
+  --bg-color: #F4F8FB;
   --text-primary: #0F172A;
   --text-muted: #64748B;
   --accent-blue: #0071E3;
+  --accent-tint: #E0F2FE;
+  --accent-deep: #0369A1;
+  --card-border: #E2EBF2;
 }
 
 /* Background subtle blueish grid pattern */
 .bg-grid-pattern {
-  background-image: radial-gradient(rgba(14, 165, 233, 0.08) 1px, transparent 1px);
-  background-size: 28px 28px;
+  background-image: radial-gradient(rgba(14, 165, 233, 0.09) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
-/* Selection */
+/* Custom selection */
 ::selection {
   background-color: #E0F2FE;
   color: #0369A1;
 }
 
-/* Scrollbar */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -56,11 +40,11 @@
 
 /* Apple Keynote Glass Card */
 .keynote-card {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(226, 235, 242, 0.9);
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.03), 0 2px 6px -1px rgba(14, 165, 233, 0.02);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(226, 235, 242, 0.95);
+  box-shadow: 0 4px 24px -2px rgba(15, 23, 42, 0.03), 0 2px 8px -2px rgba(14, 165, 233, 0.02);
   border-radius: 24px;
 }
 
@@ -69,7 +53,7 @@
 }
 .keynote-card-hover:hover {
   transform: translateY(-2px);
-  border-color: rgba(0, 113, 227, 0.3);
+  border-color: rgba(0, 113, 227, 0.35);
   box-shadow: 0 12px 28px -4px rgba(0, 113, 227, 0.08);
 }
 
